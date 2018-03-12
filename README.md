@@ -17,3 +17,4 @@
 강좌 진생 순서별로 어떤 브랜치를 찾아가야 하는지 정리한 내용입니다.
 
 1. Lecture 5 - 순수JS (MVC)/폴더 구조 : 1-vanilla/scafolding
+2. Lecture 6 - 검색폼/검색폼 구현 1 : 1-vanilla/controller
