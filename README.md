@@ -52,7 +52,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 - `FormView.setup` 메소드 작성
   - 인자로 받은 form 엘리먼트 (`el`) 를 프로퍼티에 등록
   - form 엘리먼트 (`el`) 의 text input 엘리먼트 (`el.querySelector('[type=text]')`) 를 `inputEl` 프로퍼티에 등록
-  - form 엘리먼트 (`el`) 의 reset button 엘리먼트 (`el.querySelector('[type=reset')`) 를 `resetEl` 프로퍼티에 등록
+  - form 엘리먼트 (`el`) 의 reset button 엘리먼트 (`el.querySelector('[type=reset]')`) 를 `resetEl` 프로퍼티에 등록
   - `FormView.showResetBtn()` 메소드를 `false` 인자를 전달하면서 실행
 - `FormView.showResetBtn` 메소드 작성
   - 인자 `show` 로 `Boolean` 값 받음, 기본값은 `true`
@@ -123,3 +123,5 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 		- `this.onResetForm()` 메소드 실행
 - `onResetForm` 메소드 작성
 	- `console.log()` 로 결과 출력해서 확인
+
+현재 reset 버튼은 `input[type=reset]` 이기 때문에 기본으로 클릭하면 `input[type=text]` 의 내용 삭제함
