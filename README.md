@@ -22,6 +22,7 @@
 3. Lecture 7 - 검색폼/검색폼 구현 2 : 1-vanilla/FormView1
 4. Lecture 8 - 검색폼/검색폼 구현 3 : 1-vanilla/FormView2
 5. Lecture 9 - 검색폼/검색폼 구현 4 (실습) : 1-vanilla/FormView3
+6. Lecture 11 - 검색결과/검색결과 구현 1 : 1-vanilla/FormView4
 
 ## 2. VanillaJS
 
@@ -33,6 +34,7 @@
 4. [FormView2](#4-formview2)
 5. [FormView3](#5-formview3)
 6. [FormView4](#6-fromview4)
+7. [ResultView1](#7-resultview1)
 
 ### 1. scafolding
 
@@ -125,3 +127,46 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 	- `console.log()` 로 결과 출력해서 확인
 
 현재 reset 버튼은 `input[type=reset]` 이기 때문에 기본으로 클릭하면 `input[type=text]` 의 내용 삭제함
+
+### 7. ResultView1
+
+`index.html` 업데이트
+- 검색 결과를 출력할 영역 작성
+	- `form` 태그 아래에 `div[class=content]` 태그 작성
+		- 내부에 `div[id=search-result]` 태그 작성
+
+`ResultView.js` 모듈 작성
+- `View.js` 모듈을 `import` 한 후 `Object.create(View)` 메소드로 `View.js` 모듈을 상속받은 `ResultView.js` 모듈 생성
+- `ResultView.setup` 메소드 작성
+	- `el` 을 인자로 받아 `this.init(el)` 메소드 실행 (`View.js` 모듈에서 상속받음)
+- `ResultView.render` 메소드 작성
+	- `data` 를 인자로 받음 (기본은 빈 배열)
+	- `console.log()` 로 결과 확인
+	- `this.el.innerHTML` 에 삼항 연산자 할당
+		- `data.length` 에 따라
+			- `true` 이면 `this.getSearchResultHtml(data)`
+			- `false` 이면 `'검색 결과가 없습니다.'`
+- `ResultView.getSearchResultHtml` 메소드 작성
+	- `data` 를 인자로 받음
+	- `debugger` 를 사용해 Break Point 생성
+- `export default ResultView` 구문으로 모듈 내보냄
+
+`MainController.js` 모듈 업데이트
+- 필요한 모듈 불러옴
+	- `import ResultView from '../views/ResultView.js'`
+	- `import SearchModel from '../models/SearchModel.js'`
+- `init` 메소드 업데이트
+	- `ResultView.setup()` 메소드 실행
+		- `document.querySelector('#search-result')` 를 인자로 넘겨줌 (검색 결과 출력할 엘리먼트)
+- `onSubmit` 메소드 업데이트
+	- `this.search(input)` 메소드 실행
+- `search` 메소드 작성
+	- `query` 를 인자로 받음
+		- 검색어를 받는 인자
+	- `console.log()` 로 결과 확인
+	- `SearchModel.list(query)` 로 검색 결과 조회
+		- `Promise` 반환
+		- `then()` 메소드로 비동기 처리
+		- 반환한 `data` 를 받아 `this.onSearchResult(data)` 메소드 실행
+- `onSearchResult` 메소드 작성
+	- `ResultView.render(data)` 메소드 실행
