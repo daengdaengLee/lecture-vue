@@ -25,6 +25,7 @@
 5.  Lecture 9 - 검색폼/검색폼 구현 4 (실습) : 1-vanilla/FormView3
 6.  Lecture 11 - 검색결과/검색결과 구현 1 : 1-vanilla/FormView4
 7.  Lecture 12 - 검색결과/검색결과 구현 2 : 1-vanilla/ResultView1
+8. 	Lecture 13 - 검색결과/검색결과 구현 3 (실습 / 구현) : 1-vanilla/ResultView2
 
 ## 2. VanillaJS
 
@@ -38,6 +39,7 @@
 6.  [FormView4](#6-fromview4)
 7.  [ResultView1](#7-resultview1)
 8.  [ResultView2](#8-resultview2)
+9.  [ResultView3](#9-resultview3)
 
 ### 1. scafolding
 
@@ -158,3 +160,12 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 * `ResultView.getSearchResultsHtml` 메소드 업데이트 - 인자로 받은 `data` 를 `reduce()` 메소드로 가공하여 그 결과를 `return` 함 - 각 `item` 을 `this.getSearchItemHtml()` 메소드로 가공하여 그 결과를 `<ul></ul>` 태그 사이에 작성
 * `ResultView.getSearchItemHtml` 메소드 작성 - `item` 을 인자로 받음 (상품 목록 하나) - `<li></li>` 태그 안에 `<img>` 태그와 상품 이름을 출력하는 `<p></p>` 태그 작성해서 `return`
+
+### 9. ResultView3
+
+`MainController.js` 모듈 업데이트
+
+* `onResetForm` 메소드 업데이트
+	* `ResultView.hide()` 메소드 실행
+		* `ResultView.js` 모듈이 상속받은 `View.js` 모듈의 메소드
+		* `this.el.style.display` 속성을 `'none'` 으로 변경
