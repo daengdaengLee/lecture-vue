@@ -27,6 +27,7 @@
 7.  Lecture 12 - 검색결과/검색결과 구현 2 : 1-vanilla/ResultView1
 8. 	Lecture 13 - 검색결과/검색결과 구현 3 (실습) : 1-vanilla/ResultView2
 9.  Lecture 15 - 탭 구현 1 : 1-vanilla/ResultView3
+10. Lecture 16 - 탭 구현 2 : 1-vanilla/TabView1
 
 ## 2. VanillaJS
 
@@ -42,6 +43,7 @@
 8.  [ResultView2](#8-resultview2)
 9.  [ResultView3](#9-resultview3)
 10. [TabView1](#10-tabview1)
+11. [TabView2](#11-tabview2)
 
 ### 1. scafolding
 
@@ -180,3 +182,32 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `id` 와 `class` 속성에 모두 `tabs` 작성
   * 두 개의 `li` 태그 작성
     * 각각 '추천 검색어', '최근 검색어' 항목
+
+### 11. TabView2
+
+`TabView.js` 모듈 생성
+
+* `View.js` 모듈 상속받아 생성
+* `TabView.setup` 메소드 작성
+  * `el` 을 인자로 받아 `this.init(el)` 메소드 실행
+  * `this.init()` 메소드는 `View.js` 모듈에서 상속받은 것
+* `TabView.setActiveTab` 메소드 작성
+  * `tabName` 을 인자로 받음
+  * `Array.from(this.el.querySelectorAll('li'))` 로 `this.el` 아래의 모든 `li` 태그 선택하여 배열 생성
+  * `.forEach(li => { ... })` 메소드로 각 `li` 의 className 변경
+    * 만일 `li.innerHTML` 이 `tabName` 과 같다면 `'active'`
+    * 만일 `li.innerHTML` 이 `tabName` 과 다르다면 `''`
+
+`MainController.js` 모듈 업데이트
+
+* `TabView.js` 모듈 `import`
+* `init` 메소드 업데이트
+  * `TabView.setup()` 메소드 실행
+    * `#tabs` 를 인자로 전달
+  * `this.selectedTab` 에 기본값으로 `'추천 검색어'` 할당
+  * `this.renderView()` 메소드 실행
+* `renderView` 메소드 작성
+  * `console.log` 로 디버깅
+  * `TabView.setActiveTab()` 메소드 실행
+    * 인자로 `this.selectedTab` 전달
+  * `ResultView.hide()` 메소드 실행
