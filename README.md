@@ -29,6 +29,7 @@
 9.  Lecture 15 - 탭 구현 1 : 1-vanilla/ResultView3
 10. Lecture 16 - 탭 구현 2 : 1-vanilla/TabView1
 11. Lecture 17 - 탭 구현 3 (실습) : 1-vanilla/TabView2
+12. Lecture 19 - 추천 검색어 구현 1 : 1-vanilla/TabView3
 
 ## 2. VanillaJS
 
@@ -46,6 +47,7 @@
 10. [TabView1](#10-tabview1)
 11. [TabView2](#11-tabview2)
 12. [TabView3](#12-tabview3)
+13. [KeywordView1](#13-keywordview1)
 
 ### 1. scafolding
 
@@ -248,3 +250,45 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `onChangeTab` 메소드 작성
   * `tabName` 을 인자로 받음
   * 디버깅을 위해 `console.log()` 로 출력
+
+### 13. KeywordView1
+
+`index.html` 업데이트
+
+* `div#search-result` 태그 위에 `div#search-keyword` 태그 작성
+
+`KeywordView.js` 모듈 작성
+
+* `View.js` 모듈 상속
+* `KeywordView.messages` 프로퍼티 작성
+  * `NO_KEYWORDS` 프로퍼티에 `'추천 검색어가 없습니다'` 값 할당
+* `KeywordView.setup` 메소드 작성
+  * `el` 를 인자로 받음
+  * `this.init(el)` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
+  * `this` 반환
+* `KeywordView.render` 메소드 작성
+  * `data = []` 를 인자로 받음
+  * `this.el.innerHTML` 에 `data.length`에 따라 다른 값 할당
+    * 길이가 있다면 `this.getKeywordHtml(data)`
+    * 길이가 없다면 `this.messages.NO_KEYWORDS`
+  * `this.show()` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
+* `KeywordView.getKeywordHtml` 메소드 작성
+  * `data` 를 인자로 받음
+  * `data.reduce( ... )` 로 생성한 HTML을 담은 문자열을 반환
+* `KeywordView` 를 `export`
+
+`MainController.js` 모듈 업데이트
+
+* `KeywordView.js`, `KeywordModel` 모듈 `import`
+* `init` 메소드 업데이트
+  * `KeywordView.setup(document.querySelector('#search-keyword'))` 메소드 실행
+* `renderView` 메소드 업데이트
+  * `this.selectedTab` 에 따라 분기
+    * `'추천 검색어'` 일 경우 `this.fetchSearchKeyword()` 메소드 실행
+    * 아닌 경우 `debugger`
+* `fetchSearchKeyword` 메소드 작성
+  * `KeywordModel.list()` 메소드로 데이터 가져옴
+  * 프로미스 비동기 처리에 따라 결과를 `.then()` 메소드로 처리
+    * `data` 를 받아서 `KeywordView.render(data)` 실행
