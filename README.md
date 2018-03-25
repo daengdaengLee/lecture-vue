@@ -28,6 +28,7 @@
 8. 	Lecture 13 - 검색결과/검색결과 구현 3 (실습) : 1-vanilla/ResultView2
 9.  Lecture 15 - 탭 구현 1 : 1-vanilla/ResultView3
 10. Lecture 16 - 탭 구현 2 : 1-vanilla/TabView1
+11. Lecture 17 - 탭 구현 3 (실습) : 1-vanilla/TabView2
 
 ## 2. VanillaJS
 
@@ -44,6 +45,7 @@
 9.  [ResultView3](#9-resultview3)
 10. [TabView1](#10-tabview1)
 11. [TabView2](#11-tabview2)
+12. [TabView3](#12-tabview3)
 
 ### 1. scafolding
 
@@ -188,15 +190,22 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 `TabView.js` 모듈 생성
 
 * `View.js` 모듈 상속받아 생성
+* `TabView.tabName` 프로퍼티 생성
+  * 객체 할당
+  * `recommand` 키에 `'추천 검색어'`
+  * `recent` 키에 `'최근 검색어'`
 * `TabView.setup` 메소드 작성
   * `el` 을 인자로 받아 `this.init(el)` 메소드 실행
   * `this.init()` 메소드는 `View.js` 모듈에서 상속받은 것
+  * `this` 를 `return`
 * `TabView.setActiveTab` 메소드 작성
   * `tabName` 을 인자로 받음
   * `Array.from(this.el.querySelectorAll('li'))` 로 `this.el` 아래의 모든 `li` 태그 선택하여 배열 생성
   * `.forEach(li => { ... })` 메소드로 각 `li` 의 className 변경
     * 만일 `li.innerHTML` 이 `tabName` 과 같다면 `'active'`
     * 만일 `li.innerHTML` 이 `tabName` 과 다르다면 `''`
+  * `this.show()` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
 
 `MainController.js` 모듈 업데이트
 
@@ -211,3 +220,31 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `TabView.setActiveTab()` 메소드 실행
     * 인자로 `this.selectedTab` 전달
   * `ResultView.hide()` 메소드 실행
+
+### 12. TabView3
+
+`TabView.js` 모듈 업데이트
+
+* `TabView.setup` 메소드 업데이트
+  * `this.bindClick()` 메소드 실행
+* `TabView.bindClick` 메소드 작성
+  * `Array.from(this.el.querySelectorAll('li')).forEach(li => { ... })` 로 `el` 아래 모든 `li` 태그를 순회
+  * 각 `li` 태그마다 `addEventListener()` 메소드 실행
+    * `'click'` 이벤트를 받음
+    * `this.onClick()` 메소드 실행
+      * 인자로 `li.innerHTML` 전달 (탭 이름)
+* `TabView.onClick` 메소드 작성
+  * `tabName` 을 인자로 받음
+  * `this.setActiveTab(tabName)` 메소드 실행
+  * `this.emit('@change', { tabName })` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
+
+`MainController.js` 모듈 업데이트
+
+* `init` 메소드 업데이트
+  * `TabView.setup()` 메소드 이후 메소드 체이닝으로 `.on('@change', e => { ... })` 메소드 실행
+    * `on` 메소드는 `View.js` 모듈에서 상속받은 메소드
+    * `e` 를 받아서 `this.onChangeTab(e.detail.tabName)` 메소드 실행
+* `onChangeTab` 메소드 작성
+  * `tabName` 을 인자로 받음
+  * 디버깅을 위해 `console.log()` 로 출력
