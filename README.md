@@ -26,11 +26,12 @@
 6.  Lecture 11 - 검색결과/검색결과 구현 1 : 1-vanilla/FormView4
 7.  Lecture 12 - 검색결과/검색결과 구현 2 : 1-vanilla/ResultView1
 8. 	Lecture 13 - 검색결과/검색결과 구현 3 (실습) : 1-vanilla/ResultView2
-9.  Lecture 15 - 탭 구현 1 : 1-vanilla/ResultView3
-10. Lecture 16 - 탭 구현 2 : 1-vanilla/TabView1
-11. Lecture 17 - 탭 구현 3 (실습) : 1-vanilla/TabView2
-12. Lecture 19 - 추천 검색어 구현 1 : 1-vanilla/TabView3
-13. Lecture 20 - 추천 검색어 구현 2 : 1-vanilla/KeywordView1
+9.  Lecture 15 - 탭/탭 구현 1 : 1-vanilla/ResultView3
+10. Lecture 16 - 탭/탭 구현 2 : 1-vanilla/TabView1
+11. Lecture 17 - 탭/탭 구현 3 (실습) : 1-vanilla/TabView2
+12. Lecture 19 - 추천 검색어/추천 검색어 구현 1 : 1-vanilla/TabView3
+13. Lecture 20 - 추천 검색어/추천 검색어 구현 2 : 1-vanilla/KeywordView1
+14. Lecture 21 - 추천 검색어/추천 검색어 구현 3 (실습) : 1-vanilla/KeywordView2
 
 ## 2. VanillaJS
 
@@ -50,6 +51,7 @@
 12. [TabView3](#12-tabview3)
 13. [KeywordView1](#13-keywordview1)
 14. [KeywordView2](#14-keywordview2)
+15. [KeywordView3](#15-keywordview3)
 
 ### 1. scafolding
 
@@ -327,3 +329,22 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
     * `View.js` 모듈에서 상속받은 메소드
   * `KeywordView.hide()` 메소드 실행
     * `View.js` 모듈에서 상속받은 메소드
+
+### 15. KeywordView3
+
+`MainController.js` 모듈 업데이트
+
+* `MainController.search` 메소드 업데이트
+  * `FormView.setValue(query)` 메소드 실행
+    * `query` 는 현재 선택한 키워드
+  * `MainController.onResetForm` 메소드 업데이트
+    * `ResultView.hide()` 메소드 실행 대신 `this.renderView()` 메소드 실행
+
+`FormView.js` 모듈 업데이트
+
+* `FormView.setValue` 메소드 작성
+  * `value` 를 인자로 받음
+    * 기본값은 `''`
+  * `this.inputEl.value` 에 인자로 받은 `value` 값 대입
+  * `this.showResetBtn(this.inputEl.value.length)` 메소드 실행
+    * 검색한 값이 있는 경우 취소 버튼을 보이게 하기 위함
