@@ -30,6 +30,7 @@
 10. Lecture 16 - 탭 구현 2 : 1-vanilla/TabView1
 11. Lecture 17 - 탭 구현 3 (실습) : 1-vanilla/TabView2
 12. Lecture 19 - 추천 검색어 구현 1 : 1-vanilla/TabView3
+13. Lecture 20 - 추천 검색어 구현 2 : 1-vanilla/KeywordView1
 
 ## 2. VanillaJS
 
@@ -48,6 +49,7 @@
 11. [TabView2](#11-tabview2)
 12. [TabView3](#12-tabview3)
 13. [KeywordView1](#13-keywordview1)
+14. [KeywordView2](#14-keywordview2)
 
 ### 1. scafolding
 
@@ -277,6 +279,8 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `KeywordView.getKeywordHtml` 메소드 작성
   * `data` 를 인자로 받음
   * `data.reduce( ... )` 로 생성한 HTML을 담은 문자열을 반환
+  * 이때 `li` 태그에 `data-keyword` 속성으로 해당 아이템의 keyword 값 부여
+  * 나중에 `(li element).dataset.keyword` 로 접근 가능
 * `KeywordView` 를 `export`
 
 `MainController.js` 모듈 업데이트
@@ -292,3 +296,34 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `KeywordModel.list()` 메소드로 데이터 가져옴
   * 프로미스 비동기 처리에 따라 결과를 `.then()` 메소드로 처리
     * `data` 를 받아서 `KeywordView.render(data)` 실행
+
+### 14. KeywordView2
+
+`KeywordView.js` 모듈 업데이트
+
+* `KeywordView.render` 메소드 내부에서 `html` 을 랜더링 한 후 `this.bindClickEvent()` 메소드 호출
+* `KeywordView.bindClickEvent` 메소드 작성
+  * `this.el` 하위의 모든 `li` 태그에 대해 `click` 이벤트 리스너 작성
+  * 이벤트 리스너 내부에서 `this.onClickKeyword(e)` 메소드 실행
+    * 매개변수에 이벤트 객체 `e` 전달
+* `KeywordView.onClickKeyword` 메소드 작성
+  * `e.currentTarget.dataset.keyword` 로 해당 `keyword` 값 접근
+  * `this.emit('@click', { keyword })` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드, 커스텀 이벤트 발행
+
+`MainController.js` 모듈 업데이트
+
+* `MainController.init` 메소드 업데이트
+  * `KeywordView.setup( ... )` 메소드 호출 이후 메소드 체이닝으로 `.on()` 메소드 실행
+    * `@click` 이벤트 수신
+    * 이벤트 핸들러에서 `this.onClickKeyword()` 메소드 실행
+      * `e.detail.keyword` 를 매개변수로 전달
+        * 클릭한 리스트의 키워드 정보
+* `MainController.onClickKeyword` 메소드 작성
+  * `keyword` 를 매개변수로 받음
+  * `this.search(keyword)` 메소드 실행
+* `MainController.onSearchResult` 메소드 업데이트
+  * `TabView.hide()` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
+  * `KeywordView.hide()` 메소드 실행
+    * `View.js` 모듈에서 상속받은 메소드
