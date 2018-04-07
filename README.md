@@ -32,6 +32,7 @@
 12. Lecture 19 - 추천 검색어/추천 검색어 구현 1 : 1-vanilla/TabView3
 13. Lecture 20 - 추천 검색어/추천 검색어 구현 2 : 1-vanilla/KeywordView1
 14. Lecture 21 - 추천 검색어/추천 검색어 구현 3 (실습) : 1-vanilla/KeywordView2
+15. Lecture 23 - 최근 검색어/최근 검색어 구현 1, 2 : 1-vanilla/KeywordView3
 
 ## 2. VanillaJS
 
@@ -52,6 +53,7 @@
 13. [KeywordView1](#13-keywordview1)
 14. [KeywordView2](#14-keywordview2)
 15. [KeywordView3](#15-keywordview3)
+16. [HistoryView1](#16-historyview1)
 
 ### 1. scafolding
 
@@ -348,3 +350,34 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `this.inputEl.value` 에 인자로 받은 `value` 값 대입
   * `this.showResetBtn(this.inputEl.value.length)` 메소드 실행
     * 검색한 값이 있는 경우 취소 버튼을 보이게 하기 위함
+
+### 16. HistoryView1
+
+`index.html` 파일 업데이트
+
+* `div[id="search-history"]` 태그 작성
+  * `div[id="search-keyword"]` 태그 아래에 위치
+
+`HistoryView.js` 모듈 Create
+
+* `KeywordView.js` 모듈을 상속받음
+  * `Object.create(KeywordView)` 메소드 사용
+* `HistoryView` 모듈 export
+
+`MainController.js` 모듈 Update
+
+* `HistoryView.js` 모듈 import
+* `HistoryModel.js` 모듈 import
+* `init` 메소드 Update
+  * `HistoryView` 설정
+    * `KeywordView` 설정과 동일한 형식
+    * `@click` 이벤트에 `onClickHistroy` 핸들러 등록
+* `onClickHistory` 메소드 Create
+  * `onClickKeyword` 메소드와 동일
+* `renderView` 메소드 Update
+  * 현재 탭이 '최근 검색어' 탭일 경우 `this.fetchSearchHistory()` 메소드 실행
+* `fetchSearchHistory` 메소드 Create
+  * `HistoryModel` 의 `list()` 메소드로 목록을 가져옴
+  * `then` 으로 반환한 `Promise` 객체 처리
+    * 받아온 `data` 를 `HistoryView.render(data)` 로 출력
+      * `HistoryView` 의 `render` 메소드는 `KeywordView` 의 `render` 메소드를 상속받은 것
