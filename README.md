@@ -34,6 +34,7 @@
 14. Lecture 21 - 추천 검색어/추천 검색어 구현 3 (실습) : 1-vanilla/KeywordView2
 15. Lecture 23 - 최근 검색어/최근 검색어 구현 1, 2 : 1-vanilla/KeywordView3
 16. Lecture 24 - 최근 검색어/최근 검색어 구현 3 : 1-vanilla/HistoryView1
+17. Lecture 25 - 최근 검색어/최근 검색어 구현 4 (실습) : 1-vanilla/HistoryView2
 
 ## 2. VanillaJS
 
@@ -56,6 +57,7 @@
 15. [KeywordView3](#15-keywordview3)
 16. [HistoryView1](#16-historyview1)
 17. [HistoryView2](#17-historyview2)
+18. [HistoryView3](#18-historyview3)
 
 ### 1. scafolding
 
@@ -391,3 +393,25 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `HistoryView.getKeywordsHtml` 메소드 Create
   * `KeywordView` 모듈의 `getKeywordsHtml` 메소드를 overriding
   * 최근 검색어를 보여줄 `ul` 태그와 내부의 `li` 태그를 문자열로 작성해 return
+
+### 18. HistoryView3
+
+`HistoryView.js` 모듈 Update
+
+* `HistoryView.bindRemoveBtn` 메소드 Create
+  * 해당 `el` 의 모든 `button.btn-remove` 에 `click` 이벤트에 대한 `eventListener` 를 연결
+    * 이벤트 전파를 막음
+    * `this.onRemove(btn.parentElement.dataset.keyword)` 메소드 실행
+* `HistoryView.onRemove` 메소드 Create
+  * `this.emit('@remove', { keyword })` 메소드 실행
+
+`MainController.js` 모듈 Update
+
+* `fetchSearchHistory` 메소드 Update
+  * `HistoryView`를 `render`한 이후 메소드 체이닝으로 `bindRemoveBtn()` 메소드 실행
+* `init` 메소드 Update
+  * `HistoryView`를 `setup`하는 부분에서 `'@remove'` 이벤트를 `on` 메소드로 등록
+    * 이벤트 리스너로 `e => this.onRemoveHistory(e.detail.keyword)` 등록
+* `onRemoveHistory` 메소드 Create
+  * `HistoryModel`의 `remove` 메소드로 해당 `keyword`에 해당하는 데이터 삭제
+  * `this.render()` 메소드 실행하여 화면을 다시 한 번 랜더링
