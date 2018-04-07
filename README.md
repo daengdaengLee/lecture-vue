@@ -36,20 +36,21 @@
 16. Lecture 24 - 최근 검색어/최근 검색어 구현 3 : 1-vanilla/HistoryView1
 17. Lecture 25 - 최근 검색어/최근 검색어 구현 4 (실습) : 1-vanilla/HistoryView2
 18. Lecture 27 - 최근 검색어/최근 검새어 구현 checkout : 1-vanilla/HistoryView3
+19. Lecture 28 - 최근 검색어/최근 검색어 구현 5 (실습) : 1-vanilla/HistoryView4
 
 ## 2. VanillaJS
 
 해당 브랜치의 주제를 정리했습니다.
 
-01.  [scafolding](#1-scafolding)
-02.  [controller](#2-controller)
-03.  [FormView1](#3-formview1)
-04.  [FormView2](#4-formview2)
-05.  [FormView3](#5-formview3)
-06.  [FormView4](#6-fromview4)
-07.  [ResultView1](#7-resultview1)
-08.  [ResultView2](#8-resultview2)
-09.  [ResultView3](#9-resultview3)
+1.  [scafolding](#1-scafolding)
+2.  [controller](#2-controller)
+3.  [FormView1](#3-formview1)
+4.  [FormView2](#4-formview2)
+5.  [FormView3](#5-formview3)
+6.  [FormView4](#6-fromview4)
+7.  [ResultView1](#7-resultview1)
+8.  [ResultView2](#8-resultview2)
+9.  [ResultView3](#9-resultview3)
 10. [TabView1](#10-tabview1)
 11. [TabView2](#11-tabview2)
 12. [TabView3](#12-tabview3)
@@ -60,6 +61,7 @@
 17. [HistoryView2](#17-historyview2)
 18. [HistoryView3](#18-historyview3)
 19. [HistoryView4](#19-historyview4)
+20. [HistoryView5](#20-historyview5)
 
 ### 1. scafolding
 
@@ -427,3 +429,12 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `this.renderView()` 메소드 실행
 * `init` 메소드 Update
   * 초기 `this.selectedTab` 값을 다시 `'추천 검색어'` 로 변경
+
+### 20. HistoryView5
+
+`MainController.js` 모듈 Update
+
+* `search` 메소드 Update
+  * 추천 검색어 클릭, 최근 검색어 클릭, 직접 입력 모두 최종적으로 `search` 메소드를 호출하기 때문
+  * `HistoryModel.add(query)` 메소드 실행
+    * `HistoryModel` 에 검색 기록을 추가하는 메소드
