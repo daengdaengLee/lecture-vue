@@ -33,6 +33,7 @@
 13. Lecture 20 - 추천 검색어/추천 검색어 구현 2 : 1-vanilla/KeywordView1
 14. Lecture 21 - 추천 검색어/추천 검색어 구현 3 (실습) : 1-vanilla/KeywordView2
 15. Lecture 23 - 최근 검색어/최근 검색어 구현 1, 2 : 1-vanilla/KeywordView3
+16. Lecture 24 - 최근 검색어/최근 검색어 구현 3 : 1-vanilla/HistoryView1
 
 ## 2. VanillaJS
 
@@ -54,6 +55,7 @@
 14. [KeywordView2](#14-keywordview2)
 15. [KeywordView3](#15-keywordview3)
 16. [HistoryView1](#16-historyview1)
+17. [HistoryView2](#17-historyview2)
 
 ### 1. scafolding
 
@@ -381,3 +383,11 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `then` 으로 반환한 `Promise` 객체 처리
     * 받아온 `data` 를 `HistoryView.render(data)` 로 출력
       * `HistoryView` 의 `render` 메소드는 `KeywordView` 의 `render` 메소드를 상속받은 것
+
+### 17. HistoryView2
+
+`HistoryView.js` 모듈 Update
+
+* `HistoryView.getKeywordsHtml` 메소드 Create
+  * `KeywordView` 모듈의 `getKeywordsHtml` 메소드를 overriding
+  * 최근 검색어를 보여줄 `ul` 태그와 내부의 `li` 태그를 문자열로 작성해 return
