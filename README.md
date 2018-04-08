@@ -45,6 +45,7 @@
 24. Lecture 36 - 검색결과/검색결과 (실습) : 2-vue/Result1
 25. Lecture 38 - 탭/탭 : 2-vue/Result2
 26. Lecture 39 - 탭/탭 (실습) : 2-vue/Tab1  
+27. Lecture 41 - 추천 검색어/추천 검색어 구현 : 2-vue/Tab2
 
 ## 2. VanillaJS
 
@@ -460,6 +461,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 6. [Result2](#6-2-vue/result2)
 7. [Tab1](#7-2-vue/tab1)
 8. [Tab2](#8-2-vue/tab2)
+9. [Keyword](#9-2-vue/keyword)
 
 ### 1. 2-vue/scafolding
 
@@ -596,3 +598,31 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 * `onClickTab` 메소드 Create
   * `tab` 을 첫 번째 인자로 받음
   * `this.selectedTab = tab` 으로 현재 선택한 탭 변경
+
+### 9. 2-vue/Keyword
+
+`app.js` 모듈 Update
+
+* `KeywordModel` import
+* `keywords` 데이터 Create
+  * 빈 배열 할당
+* `created` 라이프 사이클 메소드 Update
+  * `this.fetchKeyword()` 메소드 실행
+* `fetchKeyword` 메소드 Create
+  * `KeywordModel.list().then(data => this.keywords = data)` 실행
+* `onClickKeyword` 메소드 Create
+  * `this.query = keyword`
+    * 검색어를 키워드로 설정
+  * `this.search()` 메소드 실행
+    * 검색 실행
+
+`index.html` 모듈 Update
+
+* 추천 검색어 목록 출력하는 영역에 `div[v-if="keywords.length"]` 태그와 `div[v-else]` 태그 작성
+  * `div[v-if="keywords.length"]`
+    * `ul[class="list"]` 태그 작성
+      * `li[v-for="(item, index) in keywords"][v-on:click="onClickKeyword(item.keyword)"]` 태그 작성
+        * `span[class="number"]{ {{ index+1 }} }` 로 추천 검색어 목록 번호 출력
+        * {{ item.keyword }} 로 추천 검색어 출력
+  * `div[v-else]`
+    * `'추천 검색어가 없습니다.'` 출력
