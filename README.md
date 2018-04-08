@@ -46,6 +46,7 @@
 25. Lecture 38 - 탭/탭 : 2-vue/Result2
 26. Lecture 39 - 탭/탭 (실습) : 2-vue/Tab1  
 27. Lecture 41 - 추천 검색어/추천 검색어 구현 : 2-vue/Tab2
+28. Lecture 42 - 최근 검색어/최근 검색어 : 2-vue/Keyword
 
 ## 2. VanillaJS
 
@@ -453,15 +454,16 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 해당 브랜치의 주제를 정리했습니다.
 
-1. [scafolding](#1-2-vue/scafolding)
-2. [install](#2-2-vue/install)
-3. [Form1](#3-2-vue/form1)
-4. [Form2](#4-2-vue/from2)
-5. [Result1](#5-2-vue/result1)
-6. [Result2](#6-2-vue/result2)
-7. [Tab1](#7-2-vue/tab1)
-8. [Tab2](#8-2-vue/tab2)
-9. [Keyword](#9-2-vue/keyword)
+1.  [scafolding](#1-2-vue/scafolding)
+2.  [install](#2-2-vue/install)
+3.  [Form1](#3-2-vue/form1)
+4.  [Form2](#4-2-vue/from2)
+5.  [Result1](#5-2-vue/result1)
+6.  [Result2](#6-2-vue/result2)
+7.  [Tab1](#7-2-vue/tab1)
+8.  [Tab2](#8-2-vue/tab2)
+9.  [Keyword](#9-2-vue/keyword)
+10. [History1](#10-2-vue/history1)
 
 ### 1. 2-vue/scafolding
 
@@ -626,3 +628,30 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
         * {{ item.keyword }} 로 추천 검색어 출력
   * `div[v-else]`
     * `'추천 검색어가 없습니다.'` 출력
+
+### 10. 2-vue/History1
+
+`index.html` 모듈 Update
+
+* 최근 검색어 목록 출력하는 영역에 `div[v-if="history.length"]` 태그와 `div[v-else]` 태그 작성
+  * `div[v-if="history.length"]`
+    * `ul[class="list"]` 태그 작성
+      * `li[v-for="item in history"][v-on:click="onClickKeyword(item.keyword)"]` 태그 작성
+        * 추천 검색어에서 사용한 `onClickKeyword` 메소드 그대로 사용
+        * 같은 일을 수행하기 때문
+        * `{{ item.keyword }}` 로 최근 검색어 출력
+        * `span[class="date"]{ {{item.date}} }` 로 검색 날짜 출력
+        * `button[class="btn-remove"]` 로 최근 검색어 삭제 버튼 출력
+  * `div[v-else]`
+    * `'최근 검색어가 없습니다.'` 출력
+
+`app.js` 모듈 Update
+
+* `HistoryModel` 모듈 import
+* `history` 데이터 Create
+  * 초기값으로 빈 배열 할당
+* `created` 라이프 사이클 메소드 Update
+  * `this.fetchHistory()` 메소드 실행
+* `fetchHistory` 메소드 Create
+  * `HistoryModel.list().then(data => this.history = data)`
+    * 최근 검색어 목록을 조회해서 `history` 데이터에 할당
