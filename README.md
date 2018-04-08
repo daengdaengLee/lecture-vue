@@ -41,6 +41,7 @@
 20. Lecture 31 - Vue.js (MVVM)/vue.js 설치 : 2-vue/scafolding
 21. Lecture 32 - 검색폼/검색폼 : 2-vue/install
 22. Lecture 33 - 검색폼/검색폼 (실습) : 2-vue/Form1
+23. Lecture 35 - 검색결과/검색결과 : 2-vue/Form2
 
 ## 2. VanillaJS
 
@@ -452,6 +453,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 2. [install](#2-2-vue/install)
 3. [Form1](#3-2-vue/form1)
 4. [Form2](#4-2-vue/from2)
+5. [Result1](#5-2-vue/result1)
 
 ### 1. 2-vue/scafolding
 
@@ -517,3 +519,25 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 * `onKeyup` 메소드 Create
   * 만일 `query` 의 길이가 없다면 `onReset()` 메소드 호출
   * `if (!this.query.length) this.onReset()`
+
+### 5. 2-vue/Result1
+
+`app.js` 모듈 업데이트
+
+* `SearchModel` 모듈 `import`
+* 검색 결과를 나타내는 `searchResult` 데이터 Create
+  * 빈 배열의 형태
+* `onSubmit` 메소드 Update
+  * `this.search()` 메소드 실행
+* `search` 메소드 Create
+  * `SearchModel.list()` 메소드를 실행하여 검색 결과 데이터 조회
+  * `.then()` 메소드 체이닝으로 조회한 데이터 처리
+    * `this.searchResult` 데이터에 조회한 데이터 할당
+* `submitted` 데이터 Create
+  * 초기값은 `false`
+  * 검색이 일어나면 (`search` 메소드가 실행되면) `true` 로 값 변경
+
+`index.html` 모듈 Update
+
+* 검색 결과를 출력하는 영역을 `div` 태그로 감쌈
+  * `v-if="submitted"` 디렉티브로 Vue Instance 의 `submitted` 데이터가 `true` 일 때만 랜더링하도록 함
