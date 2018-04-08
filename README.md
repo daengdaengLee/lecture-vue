@@ -50,6 +50,7 @@
 28. Lecture 42 - 최근 검색어/최근 검색어 : 2-vue/Keyword
 29. Lecture 43 - 최근 검색어/최근 검색어 (실습) : 2-vue/History1
 30. Lecture 47 - 컴포넌트/FormComponent 구현 1 : 3-component/scafolding
+31. Lecture 48 - 컴포넌트/FormComponent 구현 2 : 3-component/FormComponent1
 
 ## 2. VanillaJS
 
@@ -681,6 +682,7 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 
 1. [scafolding](#1-3-component/scafolding)
 2. [FormComponent1](#2-3-component/formcomponent1)
+3. [FormComponent2](#3-3-component/formcomponent2)
 
 ### 1. 3-component/scafolding
 
@@ -709,3 +711,36 @@ Vue Component를 사용하기 위한 준비 단계
   * `data`에 `query` 생성
     * 빈 문자열로 초기화
   * `methods` 에 `onSubmit`, `onKeyup`, `onReset` 메소드 정의
+
+### 3. 3-component/FormComponent2
+
+`FormComponent.js` 모듈 Update
+
+* `props` 항목에 `['value']` 등록
+* `data` 항목의 `query` 데이터를 `inputValue` 로 변경하고 초기값으로 `this.value` 할당
+* `onSubmit` 메소드 Update
+  * `this.$emit('@submit', this.inputValue.trim())` 으로 `'@submit'` 이라는 이름의 이벤트 발생하고 입력값을 함께 전달
+* `onReset` 메소드  Update
+  * `this.inputValue = ''` 로 입력값 초기화
+  * `this.$emit('@reset')` 으로 `'@reset'` 이라는 이벤트 발생
+* `onKeyup` 메소드 Update
+  * 입력값이 없는 경우 `this.onReset()` 메소드 실행
+
+`index.html` 모듈 Update
+
+* `search-form` 컴포넌트 디렉티브에 `v-bind:value="query"` 디렉티브 사용
+  * `app.js` 의 `query` 데이터를 `FormComponent` 내부의 `value` 값으로 주입
+* `search-form` 컴포넌트 디렉티브에 `v-on:@submit="onSubmit"` 디렉티브 사용
+  * `FormComponent` 내부에서 `'@submit'` 이라는 이벤트가 발생하면 `app.js` 의 `onSubmit` 메소드가 처리
+* `search-form` 컴포넌트 디렉티브에 `v-on:@reset="onReset"` 디렉티브 사용
+  * `FormComponent` 내부에서 `'@reset'` 이라는 이벤트가 발생하면 `app.js` 의 `onReset` 메소드가 처리
+
+
+`app.js` 모듈 Update
+
+* `onSubmit` 메소드 Update
+  * 받는 인자의 이름을 `query` 로 변경
+  * `this.query` 에 인자로 받은 `query` 값 할당
+  * 그 이후에 이전과 동일하게 `this.search()` 메소드 실행
+* `onKeyup` 메소드 Delete
+  * `FormComponent.js` 모듈 안으로 완전히 이동
