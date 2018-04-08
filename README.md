@@ -43,6 +43,7 @@
 22. Lecture 33 - 검색폼/검색폼 (실습) : 2-vue/Form1
 23. Lecture 35 - 검색결과/검색결과 : 2-vue/Form2
 24. Lecture 36 - 검색결과/검색결과 (실습) : 2-vue/Result1
+25. Lecture 38 - 탭/탭 : 2-vue/Result2
 
 ## 2. VanillaJS
 
@@ -456,6 +457,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 4. [Form2](#4-2-vue/from2)
 5. [Result1](#5-2-vue/result1)
 6. [Result2](#6-2-vue/result2)
+7. [Tab1](#7-2-vue/tab1)
 
 ### 1. 2-vue/scafolding
 
@@ -553,3 +555,23 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
     * 검색을 시도했는지 나타내는 데이터를 다시 `false` 로 바꿈
   * `this.searchResult = []`
     * 검색 결과를 담고 있는 배열을 다시 빈 배열로 바꿈
+
+### 7. 2-vue/Tab1
+
+`index.html` 모듈 Update
+
+* `div[v-if="submitted"]` 태그 아래에 `div[v-else]` 태그 작성
+  * Vue Instance 의 `submitted` 데이터가 `false` 일 때 출력
+  * `ul[class="tabs"]` 태그 작성
+    * `li[v-for="tab in tabs"][v-bind:class="{active: tab === selectedTab}"]` 태그 작성
+      * `v-for` 디렉티브로 반복 랜더링
+      * `{{ tab }}` 으로 `tab` 내용 출력
+      * `tab` 과 Vue Instance 의 `selectedTab` 데이터가 동일한 경우 `class` 로 `active` 부여
+
+`app.js` 모듈 Update
+
+* `tabs` 데이터 Create
+  * `['추천 검색어', '최근 검색어']`
+* `created` 라이프 사이클 메소드 Create
+  * `this.selectedTab = this.tabs[0]`
+  * `selectedTab` 데이터를 `tabs` 배열의 첫 번째 인자로 초기화
