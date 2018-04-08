@@ -771,4 +771,29 @@ Vue Component를 사용하기 위한 준비 단계
 
 ### 5. 3-component/ListComponent1
 
+`ListComponent.js` 모듈 Create
 
+* `template` 에 `#list` 등록
+* `props` 에 `['data', 'type']` 등록
+* `methods` 에 `onClickList`, `onRemoveList` 메소드 정의
+  * `onClickList` 메소드에서는 `this.$emit('@click', keyword)`
+  * `onRemoveList` 메소드에서는 `this.$emit('@remove', keyword)`
+
+`index.html` 모듈 Update
+
+* `template#list` 태그 생성
+  * 추천 검색어 목록과 최근 검색어 목록의 템플릿을 모두 취합하여 `template#list` 태그 안에 작성
+  * 데이터나 메소드 이름을 일반적인 형태로 변경
+  * `type` `prop` 에 따라 목록에서 선택적으로 랜더링
+    * 번호는 추천 검색어 목록에서만 출력
+    * 날짜와 삭제 버튼은 최근 검색어 목록에서만 출력
+* 추천 검색어 목록이 있었던 곳은 `list[v-bind:data="keywords"][type="keywords"]` 컴포넌트 디렉티브로 대체
+  * `v-on:@click="onClickKeyword"` 로 이벤트 바인딩
+* 최근 검색어 목록이 있었던 곳은 `list[v-bind:data="history"][type="history"]` 컴포넌트 디렉티브로 대체
+  * `v-on:@click="onClickKeyword"` 로 이벤트 바인딩
+  * `v-on:@remove="onClickRemoveHistory"` 로 이벤트 바인딩
+
+`app.js` 모듈 Update
+
+* `ListComponent.js` 모듈 `import`
+* `components` 에 `ListComponent` 를 `'list'` 라는 이름으로 등록
