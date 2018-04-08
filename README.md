@@ -46,32 +46,32 @@
 
 해당 브랜치의 주제를 정리했습니다.
 
-1.  [scafolding](#1-scafolding)
-2.  [controller](#2-controller)
-3.  [FormView1](#3-formview1)
-4.  [FormView2](#4-formview2)
-5.  [FormView3](#5-formview3)
-6.  [FormView4](#6-fromview4)
-7.  [ResultView1](#7-resultview1)
-8.  [ResultView2](#8-resultview2)
-9.  [ResultView3](#9-resultview3)
-10. [TabView1](#10-tabview1)
-11. [TabView2](#11-tabview2)
-12. [TabView3](#12-tabview3)
-13. [KeywordView1](#13-keywordview1)
-14. [KeywordView2](#14-keywordview2)
-15. [KeywordView3](#15-keywordview3)
-16. [HistoryView1](#16-historyview1)
-17. [HistoryView2](#17-historyview2)
-18. [HistoryView3](#18-historyview3)
-19. [HistoryView4](#19-historyview4)
-20. [HistoryView5](#20-historyview5)
+1.  [scafolding](#1-1-vanilla/scafolding)
+2.  [controller](#2-1-vanilla/controller)
+3.  [FormView1](#3-1-vanilla/formview1)
+4.  [FormView2](#4-1-vanilla/formview2)
+5.  [FormView3](#5-1-vanilla/formview3)
+6.  [FormView4](#6-1-vanilla/fromview4)
+7.  [ResultView1](#7-1-vanilla/resultview1)
+8.  [ResultView2](#8-1-vanilla/resultview2)
+9.  [ResultView3](#9-1-vanilla/resultview3)
+10. [TabView1](#10-1-vanilla/tabview1)
+11. [TabView2](#11-1-vanilla/tabview2)
+12. [TabView3](#12-1-vanilla/tabview3)
+13. [KeywordView1](#13-1-vanilla/keywordview1)
+14. [KeywordView2](#14-1-vanilla/keywordview2)
+15. [KeywordView3](#15-1-vanilla/keywordview3)
+16. [HistoryView1](#16-1-vanilla/historyview1)
+17. [HistoryView2](#17-1-vanilla/historyview2)
+18. [HistoryView3](#18-1-vanilla/historyview3)
+19. [HistoryView4](#19-1-vanilla/historyview4)
+20. [HistoryView5](#20-1-vanilla/historyview5)
 
-### 1. scafolding
+### 1. 1-vanilla/scafolding
 
 vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
-### 2. controller
+### 2. 1-vanilla/controller
 
 `MainController.js` 모듈 작성 및 등록
 
@@ -79,7 +79,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 크롬 61 버전 이상부터 ES6 의 module system 지원
 
-### 3. FormView1
+### 3. 1-vanilla/FormView1
 
 `FormView.js` 모듈 작성
 
@@ -102,7 +102,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 실행 결과 첫 로딩 화면에서 reset button 은 화면에 표시되지 않음
 
-### 4. FormView2
+### 4. 1-vanilla/FormView2
 
 `FormView.js` 모듈 업데이트
 
@@ -119,7 +119,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
       * `value` 값이 없다면 `length` 가 `0` 이므로 `false`
       * `value` 값이 있다면 `length` 가 자연수이므로 `true`
 
-### 5. FormView3
+### 5. 1-vanilla/FormView3
 
 `FormView.js` 모듈의 `FormView.onKeyup` 메소드 업데이트
 
@@ -141,7 +141,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `onSubmit` 메소드 작성
   * `console.log()` 로 결과 출력해서 확인
 
-### 6. FormView4
+### 6. 1-vanilla/FormView4
 
 `FormView.js` 모듈 업데이트
 
@@ -158,7 +158,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 현재 reset 버튼은 `input[type=reset]` 이기 때문에 기본으로 클릭하면 `input[type=text]` 의 내용 삭제함
 
-### 7. ResultView1
+### 7. 1-vanilla/ResultView1
 
 `index.html` 업데이트
 
@@ -180,14 +180,14 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `search` 메소드 작성 - `query` 를 인자로 받음 - 검색어를 받는 인자 - `console.log()` 로 결과 확인 - `SearchModel.list(query)` 로 검색 결과 조회 - `Promise` 반환 - `then()` 메소드로 비동기 처리 - 반환한 `data` 를 받아 `this.onSearchResult(data)` 메소드 실행
 * `onSearchResult` 메소드 작성 - `ResultView.render(data)` 메소드 실행
 
-### 8. ResultView2
+### 8. 1-vanilla/ResultView2
 
 `ResultView.js` 모듈 업데이트
 
 * `ResultView.getSearchResultsHtml` 메소드 업데이트 - 인자로 받은 `data` 를 `reduce()` 메소드로 가공하여 그 결과를 `return` 함 - 각 `item` 을 `this.getSearchItemHtml()` 메소드로 가공하여 그 결과를 `<ul></ul>` 태그 사이에 작성
 * `ResultView.getSearchItemHtml` 메소드 작성 - `item` 을 인자로 받음 (상품 목록 하나) - `<li></li>` 태그 안에 `<img>` 태그와 상품 이름을 출력하는 `<p></p>` 태그 작성해서 `return`
 
-### 9. ResultView3
+### 9. 1-vanilla/ResultView3
 
 `MainController.js` 모듈 업데이트
 
@@ -196,7 +196,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
     * `ResultView.js` 모듈이 상속받은 `View.js` 모듈의 메소드
     * `this.el.style.display` 속성을 `'none'` 으로 변경
 
-### 10. TabView1
+### 10. 1-vanilla/TabView1
 
 `index.html` 파일 업데이트
 
@@ -205,7 +205,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * 두 개의 `li` 태그 작성
     * 각각 '추천 검색어', '최근 검색어' 항목
 
-### 11. TabView2
+### 11. 1-vanilla/TabView2
 
 `TabView.js` 모듈 생성
 
@@ -241,7 +241,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
     * 인자로 `this.selectedTab` 전달
   * `ResultView.hide()` 메소드 실행
 
-### 12. TabView3
+### 12. 1-vanilla/TabView3
 
 `TabView.js` 모듈 업데이트
 
@@ -269,7 +269,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `tabName` 을 인자로 받음
   * 디버깅을 위해 `console.log()` 로 출력
 
-### 13. KeywordView1
+### 13. 1-vanilla/KeywordView1
 
 `index.html` 업데이트
 
@@ -313,7 +313,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * 프로미스 비동기 처리에 따라 결과를 `.then()` 메소드로 처리
     * `data` 를 받아서 `KeywordView.render(data)` 실행
 
-### 14. KeywordView2
+### 14. 1-vanilla/KeywordView2
 
 `KeywordView.js` 모듈 업데이트
 
@@ -344,7 +344,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `KeywordView.hide()` 메소드 실행
     * `View.js` 모듈에서 상속받은 메소드
 
-### 15. KeywordView3
+### 15. 1-vanilla/KeywordView3
 
 `MainController.js` 모듈 업데이트
 
@@ -363,7 +363,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `this.showResetBtn(this.inputEl.value.length)` 메소드 실행
     * 검색한 값이 있는 경우 취소 버튼을 보이게 하기 위함
 
-### 16. HistoryView1
+### 16. 1-vanilla/HistoryView1
 
 `index.html` 파일 업데이트
 
@@ -394,7 +394,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
     * 받아온 `data` 를 `HistoryView.render(data)` 로 출력
       * `HistoryView` 의 `render` 메소드는 `KeywordView` 의 `render` 메소드를 상속받은 것
 
-### 17. HistoryView2
+### 17. 1-vanilla/HistoryView2
 
 `HistoryView.js` 모듈 Update
 
@@ -402,7 +402,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `KeywordView` 모듈의 `getKeywordsHtml` 메소드를 overriding
   * 최근 검색어를 보여줄 `ul` 태그와 내부의 `li` 태그를 문자열로 작성해 return
 
-### 18. HistoryView3
+### 18. 1-vanilla/HistoryView3
 
 `HistoryView.js` 모듈 Update
 
@@ -424,7 +424,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * `HistoryModel`의 `remove` 메소드로 해당 `keyword`에 해당하는 데이터 삭제
   * `this.render()` 메소드 실행하여 화면을 다시 한 번 랜더링
 
-### 19. HistoryView4
+### 19. 1-vanilla/HistoryView4
 
 `MainController.js` 모듈 Update
 
@@ -434,7 +434,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 * `init` 메소드 Update
   * 초기 `this.selectedTab` 값을 다시 `'추천 검색어'` 로 변경
 
-### 20. HistoryView5
+### 20. 1-vanilla/HistoryView5
 
 `MainController.js` 모듈 Update
 
@@ -448,16 +448,16 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 해당 브랜치의 주제를 정리했습니다.
 
-1. [scafolding](#1-scafolding)
-2. [install](#2-install)
-3. [Form1](#3-form1)
-4. [Form2](#4-form2)
+1. [scafolding](#1-2-vue/scafolding)
+2. [install](#2-2-vue/install)
+3. [Form1](#3-2-vue/form1)
+4. [Form2](#4-2-vue/from2)
 
-### 1. scafolding
+### 1. 2-vue/scafolding
 
 Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 기본 폴더 구조
 
-### 2. install
+### 2. 2-vue/install
 
 `index.html` 파일 Update
 
@@ -476,7 +476,7 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
     * `data` 속성으로 객체 지정
       * `msg` 속성에 `'hello world'` 값 할당
 
-### 3. Form1
+### 3. 2-vue/Form1
 
 `index.html` 파일 Update
 
@@ -500,7 +500,7 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 * `methods` 항목 작성
   * `onSubmit` 메소드 작성
 
-### 4. From2
+### 4. 2-vue/From2
 
 `index.html` 파일 Update
 
