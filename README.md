@@ -40,6 +40,7 @@
 19. Lecture 28 - 최근 검색어/최근 검색어 구현 5 (실습) : 1-vanilla/HistoryView4
 20. Lecture 31 - Vue.js (MVVM)/vue.js 설치 : 2-vue/scafolding
 21. Lecture 32 - 검색폼/검색폼 : 2-vue/install
+22. Lecture 33 - 검색폼/검색폼 (실습) : 2-vue/Form1
 
 ## 2. VanillaJS
 
@@ -450,6 +451,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 1. [scafolding](#1-scafolding)
 2. [install](#2-install)
 3. [Form1](#3-form1)
+4. [Form2](#4-form2)
 
 ### 1. scafolding
 
@@ -497,3 +499,21 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
     * `input` 태그에 `v-model` 로 바인딩
 * `methods` 항목 작성
   * `onSubmit` 메소드 작성
+
+### 4. From2
+
+`index.html` 파일 Update
+
+* `form>button` 태그에 `click` 이벤트 리스너 등록
+  * `v-on:click="onReset"`
+* `form/input` 태그에 `keyup` 이벤트 리스너 등록
+  * `v-on:keyup="onKeyup"`
+
+`app.js` 모듈 Update
+
+* `onReset` 메소드 Create
+  * `this.query = ''`
+    * 해당 Vue Instance 의 `query` 데이터를 빈 문자열로 바꿈
+* `onKeyup` 메소드 Create
+  * 만일 `query` 의 길이가 없다면 `onReset()` 메소드 호출
+  * `if (!this.query.length) this.onReset()`
