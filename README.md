@@ -9,6 +9,7 @@
 2.  [VanillaJS](#2-vanillajs)
 3.  [Vue.js](#3-vuejs)
 4.  [Component](#4-component)
+5.  [SingleFileComponent](#5-singlefilecomponent)
 
 ## 0. 들어가며
 
@@ -56,6 +57,8 @@
 34. Lecture 51 - 컴포넌트/ListComponent 구현 2 : 3-component/ListComponent1
 35. Lecture 52 - 컴포넌트/TabComponent 1 : 3-component/ListComponent2
 36. Lecture 53 - 컴포넌트/TabComponent 2 : 3-component/TabComponent1
+37. Lecture 54 - 단일 파일 컴포넌트 구현/단일 파일 컴포넌트 1 : 3-component/TabComponent2
+
 
 ## 2. VanillaJS
 
@@ -853,3 +856,14 @@ Vue Component를 사용하기 위한 준비 단계
 * `methods` 에 `onClickTab` 메소드 정의
   * `tab` 을 인자로 받음
   * `this.$emit('@change', tab)` 으로 이벤트 발생
+
+## 5. SingleFileComponent
+
+해당 브랜치의 주제를 정리했습니다.
+
+1. [install](#1-4-singlefilecomponent/install)
+
+### 1. 4-singleFileComponent/install
+
+* vue-cli 툴을 이용해 Vue 개발 환경 갖추기
+* webpack-simple template 이용
