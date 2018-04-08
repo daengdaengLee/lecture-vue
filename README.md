@@ -39,6 +39,7 @@
 18. Lecture 27 - 최근 검색어/최근 검새어 구현 checkout : 1-vanilla/HistoryView3
 19. Lecture 28 - 최근 검색어/최근 검색어 구현 5 (실습) : 1-vanilla/HistoryView4
 20. Lecture 31 - Vue.js (MVVM)/vue.js 설치 : 2-vue/scafolding
+21. Lecture 32 - 검색폼/검색폼 : 2-vue/install
 
 ## 2. VanillaJS
 
@@ -448,6 +449,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 
 1. [scafolding](#1-scafolding)
 2. [install](#2-install)
+3. [Form1](#3-form1)
 
 ### 1. scafolding
 
@@ -471,3 +473,27 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
     * `el` 속성으로는 `'#app'` 지정
     * `data` 속성으로 객체 지정
       * `msg` 속성에 `'hello world'` 값 할당
+
+### 3. Form1
+
+`index.html` 파일 Update
+
+* `form` 태그 작성
+  * 1-vanilla/index.html 의 `form` 태그 영역을 그대로 복사
+* `input` 태그에 Vue Instance 의 `query` 데이터 바인딩
+  * `v-model="query"`
+* `button` 태그가 Vue Instance 의 `query` 데이터의 길이에 따라 나타나도록 설정
+  * `v-show="query.length"`
+* `form` 태그에 `submit` 이벤트에 대한 이벤트 리스너 작성
+  * `v-on:submit.prevent="onSubmit"`
+  * `.prevent` 는 HTML 기본 이벤트를 막아줌
+    * 화면이 자동으로 갱신되는 것을 막기 위함
+
+`app.js` 모듈 Update
+
+* `query` 데이터 생성
+  * 빈 문자열
+  * 사용자가 입력한 값과 바인딩
+    * `input` 태그에 `v-model` 로 바인딩
+* `methods` 항목 작성
+  * `onSubmit` 메소드 작성
