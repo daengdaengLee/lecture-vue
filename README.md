@@ -58,7 +58,7 @@
 35. Lecture 52 - 컴포넌트/TabComponent 1 : 3-component/ListComponent2
 36. Lecture 53 - 컴포넌트/TabComponent 2 : 3-component/TabComponent1
 37. Lecture 54 - 단일 파일 컴포넌트 구현/단일 파일 컴포넌트 1 : 3-component/TabComponent2
-
+38. Lecture 55 - 단인 파일 컴포넌트 구현/단인 파일 컴포넌트 2 : 4-singleFileComponent/install
 
 ## 2. VanillaJS
 
@@ -862,8 +862,26 @@ Vue Component를 사용하기 위한 준비 단계
 해당 브랜치의 주제를 정리했습니다.
 
 1. [install](#1-4-singlefilecomponent/install)
+2. [scafolding](#2-4-singlefilecomponent/scafolding)
 
 ### 1. 4-singleFileComponent/install
 
 * vue-cli 툴을 이용해 Vue 개발 환경 갖추기
 * webpack-simple template 이용
+
+### 2. 4-singleFileComponent/scafolding
+
+* 프로젝트 루트에서 `ln -s ../1-vanilla/style.css style.css` 로 심볼릭 링크 생성
+* src 폴더에서 `ln -s ../../1-vanilla/models ./models` 로 심볼릭 링크 생성
+
+`App.vue` 모듈 Update
+
+* `template` 내용 모두 삭제
+  * `header` 영역만 복사해 옴
+* `script` 의 `data` 내용 모두 삭제
+* `style` 태그 모두 삭제
+
+`index.html` 모듈 Update
+
+* `style.css` 를 불러오는 `link` 태그 작성
+* `head` 영역에서 필요한 `meta` 태그 복사해 옴
