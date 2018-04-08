@@ -53,7 +53,8 @@
 31. Lecture 48 - 컴포넌트/FormComponent 구현 2 : 3-component/FormComponent1
 32. Lecture 49 - 컴포넌트/ResultComponent 구현 : 3-component/FormComponent2
 33. Lecture 50 - 컴포넌트/ListComponent 구현 1 : 3-component/ResultComponent
-34. Lecuter 51 - 컴포넌트/ListComponent 구현 2 : 3-component/ListComponent1
+34. Lecture 51 - 컴포넌트/ListComponent 구현 2 : 3-component/ListComponent1
+35. Lecture 52 - 컴포넌트/TabComponent 1 : 3-component/ListComponent2
 
 ## 2. VanillaJS
 
@@ -689,6 +690,7 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 4. [ResultComponent](#4-3-component/resultcomponent)
 5. [ListComponent1](#5-3-component/listcomponent1)
 6. [ListComponent2](#6-3-component/listcomponent2)
+7. [TabComponent1](#7-3-component/tabcomponent1)
 
 ### 1. 3-component/scafolding
 
@@ -815,3 +817,20 @@ Vue Component를 사용하기 위한 준비 단계
 
 * `watch` 에 `value` 등록
   * 새 `value` `prop` 이 들어오면 `this.inputValue` 를 새로운 `newVal` 값으로 업데이트
+
+### 7. 3-component/TabComponent1
+
+`index.html` 모듈 Update
+
+* `template#tabs` 태그 작성
+* 기존 탭 영역을 주석처리
+* 탭 영역 자리에 `<tabs></tabs>` 컴포넌트 디렉티브 작성
+
+`TabComponent.js` 모듈 Create
+
+* `template` 에 `'#tabs'` 등록
+
+`app.js` 모듈 Update
+
+* `TabComponent` 모듈 `import`
+* `components` 에 `TabComponent` 를 `'tabs'` 라는 이름으로 등록
