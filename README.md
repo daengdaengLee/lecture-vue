@@ -8,6 +8,7 @@
 1.  [브랜치 순서](#1-브랜치-순서)
 2.  [VanillaJS](#2-vanillajs)
 3.  [Vue.js](#3-vuejs)
+4.  [Component](#4-component)
 
 ## 0. 들어가며
 
@@ -48,6 +49,7 @@
 27. Lecture 41 - 추천 검색어/추천 검색어 구현 : 2-vue/Tab2
 28. Lecture 42 - 최근 검색어/최근 검색어 : 2-vue/Keyword
 29. Lecture 43 - 최근 검색어/최근 검색어 (실습) : 2-vue/History1
+30. Lecture 47 - 컴포넌트/FormComponent 구현 1 : 3-component/scafolding
 
 ## 2. VanillaJS
 
@@ -672,3 +674,38 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 * `search` 메소드 Update
   * `HistoryModel.add(this.query)`
   * `this.fetchHistory()`
+
+## 4. Component
+
+해당 브랜치의 주제를 정리했습니다.
+
+1. [scafolding](#1-3-component/scafolding)
+2. [FormComponent1](#2-3-component/formcomponent1)
+
+### 1. 3-component/scafolding
+
+2-vue 브랜치에서 마지막에 작업한 결과 그대로 가져옴
+Vue Component를 사용하기 위한 준비 단계
+
+### 2. 3-component/FormComponent1
+
+`index.html` 모듈 Update
+
+* `form` 태그 영역을 HTML 문서 하단에 `template#search-form` 태그 안으로 이동
+  * `FormComponent` 에서 `template` 속성으로 연결할 태그
+* 등록한 `search-form` 디렉티브로 `FormComponent` 사용
+  
+`app.js` 모듈 Update
+
+* `FormComponent.js` 모듈 import
+* Vue Instance 의 `components` 항목에 컴포넌트 등록
+  * `{ 'search-form': FormComponent }`
+
+`FormComponent.js` 모듈 Create
+
+* `export default { ... }` 로 객체를 `export`
+  * 해당 객체가 Vue Component
+  * `template` 으로 `#search-form` 지정
+  * `data`에 `query` 생성
+    * 빈 문자열로 초기화
+  * `methods` 에 `onSubmit`, `onKeyup`, `onReset` 메소드 정의
