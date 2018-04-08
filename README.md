@@ -55,6 +55,7 @@
 33. Lecture 50 - 컴포넌트/ListComponent 구현 1 : 3-component/ResultComponent
 34. Lecture 51 - 컴포넌트/ListComponent 구현 2 : 3-component/ListComponent1
 35. Lecture 52 - 컴포넌트/TabComponent 1 : 3-component/ListComponent2
+36. Lecture 53 - 컴포넌트/TabComponent 2 : 3-component/TabComponent1
 
 ## 2. VanillaJS
 
@@ -691,6 +692,7 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 5. [ListComponent1](#5-3-component/listcomponent1)
 6. [ListComponent2](#6-3-component/listcomponent2)
 7. [TabComponent1](#7-3-component/tabcomponent1)
+8. [TabComponent2](#8-3-component/tabcomponent2)
 
 ### 1. 3-component/scafolding
 
@@ -834,3 +836,20 @@ Vue Component를 사용하기 위한 준비 단계
 
 * `TabComponent` 모듈 `import`
 * `components` 에 `TabComponent` 를 `'tabs'` 라는 이름으로 등록
+
+### 8. 3-component/TabComponent2
+
+`index.html` 모듈 Update
+
+* `<tabs></tabs>` 컴포넌트 디렉티브에 데이터와 이벤트 바인딩
+  * `v-bind:tabs="tabs"`
+  * `v-bind:selected-tab="selectedTab"`
+  * `v-on:@change="onClickTab"`
+* `template#tabs` 태그 안에 탭 관련 탬플릿 이동
+
+`TabComponent.js` 모듈 Update
+
+* `props` 에 `['tabs', 'selectedTab']` 등록
+* `methods` 에 `onClickTab` 메소드 정의
+  * `tab` 을 인자로 받음
+  * `this.$emit('@change', tab)` 으로 이벤트 발생
