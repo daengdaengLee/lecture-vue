@@ -51,6 +51,8 @@
 29. Lecture 43 - 최근 검색어/최근 검색어 (실습) : 2-vue/History1
 30. Lecture 47 - 컴포넌트/FormComponent 구현 1 : 3-component/scafolding
 31. Lecture 48 - 컴포넌트/FormComponent 구현 2 : 3-component/FormComponent1
+32. Lecture 49 - 컴포넌트/ResultComponent 구현 : 3-component/FormComponent2
+33. Lecture 50 - 컴포넌트/ListComponent 구현 1 : 3-component/ResultComponent
 
 ## 2. VanillaJS
 
@@ -683,6 +685,8 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 1. [scafolding](#1-3-component/scafolding)
 2. [FormComponent1](#2-3-component/formcomponent1)
 3. [FormComponent2](#3-3-component/formcomponent2)
+4. [ResultComponent](#4-3-component/resultcomponent)
+5. [ListComponent1](#5-3-component/listcomponent1)
 
 ### 1. 3-component/scafolding
 
@@ -744,3 +748,27 @@ Vue Component를 사용하기 위한 준비 단계
   * 그 이후에 이전과 동일하게 `this.search()` 메소드 실행
 * `onKeyup` 메소드 Delete
   * `FormComponent.js` 모듈 안으로 완전히 이동
+
+### 4. 3-component/ResultComponent
+
+`ResultComponent.js` 모듈 Create
+
+* `template` 에 `'#search-result'` 등록
+* `props` 에 `['data', 'query']` 등록
+
+`index.html` 모듈 Update
+
+* 검색 결과를 나타내는 영역을 `template#search-result` 태그 안 쪽으로 이동
+  * `searchResult` 를 `data` 로 변경
+* 검색 결과를 나타내는 영역에는 `<search-result</search-result>>` 컴포넌트 디렉티브 사용
+  * `v-bind:data="searchResult"` 디렉티브로 `app.js` 의 `searchResult` 데이터를 `ResultComponent` 에 `data` 라는 이름의 `prop` 으로 전달
+  * `v-bind:query="query"` 디렉티브로 `app.js` 의 `query` 데이터를 `ResultComponent` 에 `query` 라는 이름의 `prop` 으로 전달
+
+`app.js` 모듈 Update
+
+* `ResultComponent` 모듈 `import`
+* `components` 에 `ResultComponent` 를 `'search-result'` 라는 이름으로 등록
+
+### 5. 3-component/ListComponent1
+
+
