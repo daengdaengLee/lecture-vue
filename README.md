@@ -59,6 +59,7 @@
 36. Lecture 53 - 컴포넌트/TabComponent 2 : 3-component/TabComponent1
 37. Lecture 54 - 단일 파일 컴포넌트 구현/단일 파일 컴포넌트 1 : 3-component/TabComponent2
 38. Lecture 55 - 단인 파일 컴포넌트 구현/단인 파일 컴포넌트 2 : 4-singleFileComponent/install
+39. Lecture 56 - 단일 파일 컴포넌트 구현/단일 파일 컴포넌트 3 : 4-singleFileComponent/scafolding
 
 ## 2. VanillaJS
 
@@ -863,6 +864,7 @@ Vue Component를 사용하기 위한 준비 단계
 
 1. [install](#1-4-singlefilecomponent/install)
 2. [scafolding](#2-4-singlefilecomponent/scafolding)
+3. [FormComponent](#3-4-singlefilecomponent/formcomponent)
 
 ### 1. 4-singleFileComponent/install
 
@@ -885,3 +887,13 @@ Vue Component를 사용하기 위한 준비 단계
 
 * `style.css` 를 불러오는 `link` 태그 작성
 * `head` 영역에서 필요한 `meta` 태그 복사해 옴
+
+### 3. 4-singleFileComponent/FormComponent
+
+`FormComponent.vue` 모듈 Create
+
+* `template` 과 `script` 를 하나의 파일에 통합
+
+`App.vue` 모듈 Update
+
+* 기존 `app.js` 모듈의 내용 복사
