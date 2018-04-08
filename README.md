@@ -47,6 +47,7 @@
 26. Lecture 39 - 탭/탭 (실습) : 2-vue/Tab1  
 27. Lecture 41 - 추천 검색어/추천 검색어 구현 : 2-vue/Tab2
 28. Lecture 42 - 최근 검색어/최근 검색어 : 2-vue/Keyword
+29. Lecture 43 - 최근 검색어/최근 검색어 (실습) : 2-vue/History1
 
 ## 2. VanillaJS
 
@@ -464,6 +465,7 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
 8.  [Tab2](#8-2-vue/tab2)
 9.  [Keyword](#9-2-vue/keyword)
 10. [History1](#10-2-vue/history1)
+11. [History2](#11-2-vue/history2)
 
 ### 1. 2-vue/scafolding
 
@@ -655,3 +657,18 @@ Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 �
 * `fetchHistory` 메소드 Create
   * `HistoryModel.list().then(data => this.history = data)`
     * 최근 검색어 목록을 조회해서 `history` 데이터에 할당
+
+### 11. 2-vue/History2
+
+`index.html` 모듈 Update
+
+* 최근 검색어의 삭제 버튼에 `v-on:click.stop="onClickRemoveHistory(item.keyword)"` 이벤트 리스너 작성
+
+`app.js` 모듈 Update
+
+* `onClickRemoveHistory(keyword)` 메소드 Create
+  * `HistoryModel.remove(keyword)`
+  * `this.fetchHistory()`
+* `search` 메소드 Update
+  * `HistoryModel.add(this.query)`
+  * `this.fetchHistory()`
