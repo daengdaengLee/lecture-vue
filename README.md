@@ -6,7 +6,8 @@
 
 0.  [들어가며](#0-들어가며)
 1.  [브랜치 순서](#1-브랜치-순서)
-1.  [VanillaJS](#2-vanillajs)
+2.  [VanillaJS](#2-vanillajs)
+3.  [Vue.js](#3-vuejs)
 
 ## 0. 들어가며
 
@@ -37,6 +38,7 @@
 17. Lecture 25 - 최근 검색어/최근 검색어 구현 4 (실습) : 1-vanilla/HistoryView2
 18. Lecture 27 - 최근 검색어/최근 검새어 구현 checkout : 1-vanilla/HistoryView3
 19. Lecture 28 - 최근 검색어/최근 검색어 구현 5 (실습) : 1-vanilla/HistoryView4
+20. Lecture 31 - Vue.js (MVVM)/vue.js 설치 : 2-vue/scafolding
 
 ## 2. VanillaJS
 
@@ -438,3 +440,34 @@ vanillaJS 로 MVC 패턴을 구현할 때 사용하는 폴더 구조
   * 추천 검색어 클릭, 최근 검색어 클릭, 직접 입력 모두 최종적으로 `search` 메소드를 호출하기 때문
   * `HistoryModel.add(query)` 메소드 실행
     * `HistoryModel` 에 검색 기록을 추가하는 메소드
+
+
+## 3. Vue.JS
+
+해당 브랜치의 주제를 정리했습니다.
+
+1. [scafolding](#1-scafolding)
+2. [install](#2-install)
+
+### 1. scafolding
+
+Vue.js 를 이용해 MVVM 패턴의 웹 애플리케이션을 만들기 위한 기본 폴더 구조
+
+### 2. install
+
+`index.html` 파일 Update
+
+* Vue.js 를 CDN 방식을 이용해 설치
+  * `app.js` 모듈을 읽어오는 `script` 태그 바로 위에 Vue.js 를 읽어오는 `script` 태그 작성
+* `body` 태그 아래의 최상단 `div` 태그에 `#app` 으로 `id` 값 설정
+  * Vue Instance 가 해당 `div` 태그 (DOM) 에 마운팅
+  * `div.container` 내부에 `{{ msg }}` 작성
+    * Vue Instance 의 `data` 중에 `msg` 를 출력
+
+`app.js` 모듈 Update
+
+* 새로운 Vue Instance 생성
+  * `new Vue({ ... })`
+    * `el` 속성으로는 `'#app'` 지정
+    * `data` 속성으로 객체 지정
+      * `msg` 속성에 `'hello world'` 값 할당
